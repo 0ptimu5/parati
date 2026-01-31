@@ -229,30 +229,17 @@ function flor() {
     setTimeout(()=>f.remove(),6000);
 }
 
-let foto = 1;
-const escena = document.getElementById("escena");
-
 function fotoAleatoria() {
     const img = document.createElement("img");
     img.className = "foto";
-
     let ext = (foto === 3 || foto === 4) ? ".jpeg" : ".jpg";
-    img.src = `img/${foto}${ext}`;
-
-    img.style.position = "absolute";
-    img.style.left = Math.random() * 80 + "%";
-    img.style.top = Math.random() * 80 + "%";
-
-    img.onerror = () => {
-        console.error("No se encontró la imagen:", img.src);
-    };
-
+    img.src = "img/" + foto + ext;
+    img.style.left = Math.random()*80+"%";
+    img.style.top = Math.random()*80+"%";
     escena.appendChild(img);
 
     foto++;
     if (foto > 108) foto = 1;
-}
-
 }
 
 function palabra() {
@@ -268,6 +255,3 @@ function palabra() {
 
 </body>
 </html>
-
-
-
