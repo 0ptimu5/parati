@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Para Ti ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Georgia", serif;
+}
+
+body {
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.centro {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.caja {
+    background: white;
+    padding: 25px;
+    max-width: 520px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+.caja p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.botones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.si {
+    background: #ff4d6d;
+    color: white;
+}
+
+.no {
+    background: #adb5bd;
+    color: white;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.triste {
+    font-size: 80px;
+    margin-bottom: 20px;
+}
+
+.teamo {
+    position: absolute;
+    font-size: 90px;
+    font-weight: bold;
+    color: #ff4d6d;
+    animation: fade 6s forwards;
+}
+
+@keyframes fade {
+    0% {opacity:0; transform:scale(.8);}
+    20% {opacity:1; transform:scale(1);}
+    80% {opacity:1;}
+    100% {opacity:0;}
+}
+
+.flor {
+    position: absolute;
+    font-size: 35px;
+    animation: girar 6s linear infinite;
+}
+
+@keyframes girar {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+.foto {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 15px;
+    object-fit: cover;
+    animation: aparecer 4s forwards;
+}
+
+@keyframes aparecer {
+    0% {opacity:0; transform:scale(.5);}
+    20% {opacity:1;}
+    100% {opacity:0; transform:scale(1);}
+}
+
+.palabra {
+    position: absolute;
+    font-size: 22px;
+    color: #6a040f;
+    animation: palabra 4s forwards;
+}
+
+@keyframes palabra {
+    0% {opacity:0;}
+    20% {opacity:1;}
+    100% {opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 AUDIO (NO AUTOPLAY) -->
+<audio id="musica" src="musica/23.mp3" loop></audio>
+
+<div class="centro" id="inicio">
+    <div class="caja">
+        <p>
+        Hola amor ¿cómo estás? ¿Cómo te ha ido en tu día?  
+        Solo paso a recordarte lo mucho que te amo y lo importante que eres para mí.  
+        Tal vez no hemos hablado mucho últimamente, pero eso no significa que no te ame.  
+        Yo te amo más de lo que te imaginas, eres la mujer que siempre he deseado  
+        y la única con la que quiero estar para siempre.
+        <br><br>
+        Con esto quiero preguntarte de nuevo:
+        <br><br>
+        <strong>¿Quieres ser mi novia?</strong>
+        </p>
+
+        <div class="botones">
+            <button class="si" onclick="responderSi()">Sí</button>
+            <button class="no" onclick="responderNo()">No</button>
+        </div>
+    </div>
+</div>
+
+<div class="centro" id="noRespuesta" style="display:none;">
+    <div class="caja">
+        <div class="triste">😢</div>
+        <button onclick="volver()">Volver a responder</button>
+    </div>
+</div>
+
+<div id="escena"></div>
+
+<script>
+const escena = document.getElementById("escena");
+const musica = document.getElementById("musica");
+
+const palabras = [
+    "Te amo", "Mi vida", "Mi amor", "Eres única",
+    "Siempre tú", "Mi corazón", "Para siempre"
+];
+
+const colores = ["#ff4d6d","#ffcc00","#ff8c42","#c77dff","#ff6f91"];
+let foto = 1;
+
+function responderNo() {
+    document.getElementById("inicio").style.display = "none";
+    document.getElementById("noRespuesta").style.display = "flex";
+}
+
+function volver() {
+    document.getElementById("noRespuesta").style.display = "none";
+    document.getElementById("inicio").style.display = "flex";
+}
+
+function responderSi() {
+    document.getElementById("inicio").remove();
+
+    // 🎵 INICIAR MÚSICA
+    musica.volume = 0.7;
+    musica.play();
+
+    mostrarTeAmo();
+
+    setTimeout(() => {
+        setInterval(flor, 400);
+        setInterval(fotoAleatoria, 900);
+        setInterval(palabra, 800);
+    }, 6000);
+}
+
+function mostrarTeAmo() {
+    const t = document.createElement("div");
+    t.className = "teamo";
+    t.textContent = "TE AMO";
+    t.style.left = "50%";
+    t.style.top = "50%";
+    t.style.transform = "translate(-50%,-50%)";
+    escena.appendChild(t);
+
+    setTimeout(() => t.remove(), 6000);
+}
+
+function flor() {
+    const f = document.createElement("div");
+    f.className = "flor";
+    f.textContent = "🌸";
+    f.style.left = Math.random()*90+"%";
+    f.style.top = Math.random()*90+"%";
+    f.style.color = colores[Math.floor(Math.random()*colores.length)];
+    escena.appendChild(f);
+    setTimeout(()=>f.remove(),6000);
+}
+
+function fotoAleatoria() {
+    const img = document.createElement("img");
+    img.className = "foto";
+    let ext = (foto === 3 || foto === 4) ? ".jpeg" : ".jpg";
+    img.src = "img/" + foto + ext;
+    img.style.left = Math.random()*80+"%";
+    img.style.top = Math.random()*80+"%";
+    escena.appendChild(img);
+
+    foto++;
+    if (foto > 108) foto = 1;
+}
+
+function palabra() {
+    const p = document.createElement("div");
+    p.className = "palabra";
+    p.textContent = palabras[Math.floor(Math.random()*palabras.length)];
+    p.style.left = Math.random()*70+"%";
+    p.style.top = Math.random()*70+"%";
+    escena.appendChild(p);
+    setTimeout(()=>p.remove(),4000);
+}
+</script>
+
+</body>
+</html>
