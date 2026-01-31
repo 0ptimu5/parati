@@ -135,9 +135,6 @@ button:hover {
 
 <body>
 
-<!-- 🎵 AUDIO (NO AUTOPLAY) -->
-<audio id="musica" src="musica/23.mp3" loop></audio>
-
 <div class="centro" id="inicio">
     <div class="caja">
         <p>
@@ -170,11 +167,10 @@ button:hover {
 
 <script>
 const escena = document.getElementById("escena");
-const musica = document.getElementById("musica");
 
 const palabras = [
-    "Te amo", "Mi vida", "Mi amor", "Eres única",
-    "Siempre tú", "Mi corazón", "Para siempre"
+    "Te amo", "Mi vida", "Mi amor", "Eres única","05/12/2025","Mulixita❤️","Mi mujer","Me encatas",
+    "Siempre tú", "Mi corazón", "Para siempre", "Estoy muy orgulloso de ti" , "Ereslo mejemor que me ha pasado" , "18/11/2025"
 ];
 
 const colores = ["#ff4d6d","#ffcc00","#ff8c42","#c77dff","#ff6f91"];
@@ -192,11 +188,6 @@ function volver() {
 
 function responderSi() {
     document.getElementById("inicio").remove();
-
-    // 🎵 INICIAR MÚSICA
-    musica.volume = 0.7;
-    musica.play();
-
     mostrarTeAmo();
 
     setTimeout(() => {
