@@ -106,7 +106,7 @@ button:hover {
 .foto {
     position: absolute;
     width: 90px;
-    height: 90px;
+    height: 160px;
     border-radius: 15px;
     object-fit: cover;
     animation: aparecer 4s forwards;
@@ -232,14 +232,19 @@ function flor() {
 function fotoAleatoria() {
     const img = document.createElement("img");
     img.className = "foto";
+
     let ext = (foto === 3 || foto === 4) ? ".jpeg" : ".jpg";
-    img.src = "img/" + foto + ext;
-    img.style.left = Math.random()*80+"%";
-    img.style.top = Math.random()*80+"%";
+    img.src = "Img/" + foto + ext;
+
+    img.style.left = Math.random() * 80 + "%";
+    img.style.top = Math.random() * 80 + "%";
+
     escena.appendChild(img);
 
     foto++;
     if (foto > 108) foto = 1;
+}
+
 }
 
 function palabra() {
@@ -255,3 +260,4 @@ function palabra() {
 
 </body>
 </html>
+
