@@ -230,13 +230,13 @@ function flor() {
 }
 
 function fotoAleatoria() {
-    const img = document.createElement("img/");
+    const img = document.createElement("img");
     img.className = "foto";
     let ext = (foto === 3 || foto === 4) ? ".jpeg" : ".jpg";
-    img.src = "img/" + foto + ext;
+    img.src = "../img/" + foto + ext;
     img.style.left = Math.random()*80+"%";
     img.style.top = Math.random()*80+"%";
-    escena.appendChild(img/);
+    escena.appendChild(img);
 
     foto++;
     if (foto > 108) foto = 1;
@@ -255,4 +255,5 @@ function palabra() {
 
 </body>
 </html>
+
 
